@@ -1,2 +1,2 @@
-# odin-template
-Template repository for projects from TOP
+# odin-todolist
+Todo List project from TOP (The Odin Project)

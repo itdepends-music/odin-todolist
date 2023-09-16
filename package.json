@@ -1,5 +1,5 @@
 {
-    "name": "odin-template",
+    "name": "odin-todolist",
     "version": "1.0.0",
     "description": "Template repository for projects from TOP",
     "main": "index.js",
