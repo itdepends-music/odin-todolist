@@ -1,13 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="styles.css" />
-    </head>
-    <body>
-        <script src="bundle.js"></script>
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div class="content">
+        <div class="header">
+            <h1>Odin Todo List</h1>
+        </div>
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Today</a></li>
+                <li><a href="#">This Week</a></li>
+            </ul>
+            <h2>Projects</h2>
+            <ul>
+                <li class="project">
+                    <a href="#">New Project</a>
+                    <button class="edit">
+                        <iconify-icon icon="material-symbols:edit-outline"></iconify-icon>
+                    </button>
+                    <button class="delete">
+                        <iconify-icon icon="material-symbols:delete-outline"></iconify-icon>
+                    </button>
+                </li>
+                <!-- When editing project name or adding new project -->
+                <li><input type="text" /></li>
+            </ul>
+            <button class="new-project">New Project</button>
+        </div>
+        <div class="main-content">
+            <h2>New Project</h2>
+            <ul class="todo-items">
+                <li class="todo-item">
+                    <input type="checkbox" class="checked" />
+                    <span class="title">Item 1</span>
+                    <span class="priority">high</span>
+                    <span class="date">Saturday Sep 16, 2023</span>
+                    <button class="delete">
+                        <iconify-icon icon="material-symbols:delete-outline"></iconify-icon>
+                    </button>
+                    <button class="edit">
+                        <iconify-icon icon="material-symbols:edit-outline"></iconify-icon>
+                    </button>
+                    <button class="show-description">
+                        <iconify-icon icon="material-symbols:expand-more"></iconify-icon>
+                    </button>
+                    <!-- Only displayed when button.show-description is clicked -->
+                    <div class="description">Description</div>
+                </li>
+                <li class="todo-item">
+                    <input type="checkbox" class="checked" />
+                    <span class="title">Item 2</span>
+                    <span class="priority">medium</span>
+                    <span class="date">Saturday Sep 19, 2023</span>
+                    <button class="delete">
+                        <iconify-icon icon="material-symbols:delete-outline"></iconify-icon>
+                    </button>
+                    <button class="edit">
+                        <iconify-icon icon="material-symbols:edit-outline"></iconify-icon>
+                    </button>
+                    <button class="show-description">
+                        <iconify-icon icon="material-symbols:expand-more"></iconify-icon>
+                    </button>
+                    <!-- Only displayed when button.show-description is clicked -->
+                    <div class="description">Description</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="new-item">
+        <form action="">
+            <label for="formName">Name</label>
+            <input type="text" name="name" id="formName" />
+
+            <label for="formDate">Date</label>
+            <input type="date" name="date" id="formDate" />
+
+            <label for="formDescription">Description</label>
+            <textarea name="description" id="formDescription"></textarea>
+
+            <legend for="formPriority">Priority</legend>
+            <fieldset id="formPriority">
+                <div>
+                    <label for="formPriorityLow">Low</label>
+                    <input type="radio" name="priority" value="low" id="formPriorityLow" />
+                </div>
+                <div>
+                    <label for="formPriorityMedium">Medium</label>
+                    <input type="radio" name="priority" value="medium" id="formPriorityMedium" />
+                </div>
+                <div>
+                    <label for="formPriorityHigh">High</label>
+                    <input type="radio" name="priority" value="high" id="formPriorityHigh" />
+                </div>
+            </fieldset>
+
+            <div class="buttons">
+                <button id="submit">Submit</button>
+                <button type="button" id="cancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="bundle.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+</body>
+
 </html>
