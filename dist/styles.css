@@ -109,6 +109,10 @@ textarea {
     margin-right: auto;
 }
 
+.main-content .new-item-button {
+    margin-left: 16px;
+}
+
 .new-item {
     position: absolute;
     top: 0px;
