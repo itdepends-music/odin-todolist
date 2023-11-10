@@ -22,6 +22,7 @@ input,
 textarea {
     border: 1px solid black;
     color: black;
+    accent-color: black;
     background-color: white;
     outline: none;
     font-family: inherit;
@@ -106,10 +107,6 @@ textarea {
 .main-content .priority {
     color: dimgray;
     margin-right: auto;
-}
-
-.main-content .checked {
-    accent-color: black;
 }
 
 .new-item {
