@@ -11,63 +11,71 @@ const createItem = (name, date, description, priority, projectId) => {
 
 const createProject = (name) => {
     const id = curProjectId++;
-    let items = [];
 
     const addItem = (name, date, description, priority) => {
         const item = createItem(name, date, description, priority, id);
-        items.push(item);
+        projectObj.items.push(item);
         return item.id;
     };
 
     const deleteItem = (id) => {
-        projectObj.items = items.filter((item) => item.id !== id);
+        projectObj.items = projectObj.items.filter((item) => item.id !== id);
     };
 
     const getItem = (id) => {
-        return items.find((item) => item.id === id);
+        return projectObj.items.find((item) => item.id === id);
     };
 
-    const projectObj = { name, id, items, addItem, deleteItem, getItem };
+    const projectObj = {
+        name,
+        id,
+        items: [],
+        addItem,
+        deleteItem,
+        getItem,
+    };
     return projectObj;
 };
 
 const allProjects = (() => {
-    let projects = [];
-
     const addProject = (name) => {
         const project = createProject(name);
-        projects.push(project);
+        allProjectsObj.projects.push(project);
         return project.id;
     };
 
     const deleteProject = (projectId) => {
-        allProjectsObj.projects = projects.filter(
+        allProjectsObj.projects = allProjectsObj.projects.filter(
             (project) => project.id !== projectId
         );
     };
 
     const getProject = (projectId) => {
-        return projects.find((project) => project.id === projectId);
+        return allProjectsObj.projects.find(
+            (project) => project.id === projectId
+        );
     };
 
     const addItem = (projectId, name, date, description, priority) => {
-        return projects
+        return allProjectsObj.projects
             .find((project) => project.id === projectId)
             .addItem(name, date, description, priority);
     };
 
     const deleteItem = (projectId, itemId) => {
-        projects.find((project) => project.id === projectId).deleteItem(itemId);
+        allProjectsObj.projects
+            .find((project) => project.id === projectId)
+            .deleteItem(itemId);
     };
 
     const getItem = (projectId, itemId) => {
-        return projects
+        return allProjectsObj.projects
             .find((project) => project.id === projectId)
             .getItem(itemId);
     };
 
     const getAllItems = () => {
-        [...projects.map((project) => project.items)];
+        [...allProjectsObj.projects.map((project) => project.items)];
     };
 
     const getThisWeekItems = () => {
@@ -79,7 +87,7 @@ const allProjects = (() => {
     };
 
     const allProjectsObj = {
-        projects,
+        projects: [],
         addProject,
         deleteProject,
         getProject,
@@ -91,5 +99,7 @@ const allProjects = (() => {
     };
     return allProjectsObj;
 })();
+
+allProjects.addProject('My Project');
 
 export default allProjects;
