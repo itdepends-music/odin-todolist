@@ -67,6 +67,10 @@ textarea {
     margin: 16px 24px;
 }
 
+.sidebar ul button {
+    margin-left: 7px;
+}
+
 .sidebar button.new-project {
     margin: 0 24px;
 }
