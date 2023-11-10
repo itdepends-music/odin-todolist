@@ -20,14 +20,15 @@ const createProject = (name) => {
     };
 
     const deleteItem = (id) => {
-        items = items.filter((item) => item.id !== id);
+        projectObj.items = items.filter((item) => item.id !== id);
     };
 
     const getItem = (id) => {
         return items.find((item) => item.id === id);
     };
 
-    return { name, id, items, addItem, deleteItem, getItem };
+    const projectObj = { name, id, items, addItem, deleteItem, getItem };
+    return projectObj;
 };
 
 const allProjects = (() => {
@@ -40,7 +41,9 @@ const allProjects = (() => {
     };
 
     const deleteProject = (projectId) => {
-        projects = projects.filter((project) => project.id !== projectId);
+        allProjectsObj.projects = projects.filter(
+            (project) => project.id !== projectId
+        );
     };
 
     const getProject = (projectId) => {
@@ -75,7 +78,7 @@ const allProjects = (() => {
         return getAllItems.filter((item) => isThisMonth(item.date));
     };
 
-    return {
+    const allProjectsObj = {
         projects,
         addProject,
         deleteProject,
@@ -86,6 +89,7 @@ const allProjects = (() => {
         getThisWeekItems,
         getThisMonthItems,
     };
+    return allProjectsObj;
 })();
 
 export default allProjects;

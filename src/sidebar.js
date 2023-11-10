@@ -27,21 +27,28 @@ const createProjectLi = (name, id) => {
 };
 
 const createProjectButton = (id, editOrDelete) => {
-    const projectButton = document.createElement('button');
-    projectButton.classList.add(editOrDelete);
-
-    let icon;
+    let icon, handler;
     if (editOrDelete === 'edit') {
         icon = 'material-symbols:edit-outline';
     } else if (editOrDelete === 'delete') {
         icon = 'material-symbols:delete-outline';
+        handler = () => deleteProjectHandler(id);
     }
+
+    const projectButton = document.createElement('button');
+    projectButton.classList.add(editOrDelete);
+    projectButton.addEventListener('click', handler);
 
     const iconElem = document.createElement('iconify-icon');
     iconElem.setAttribute('icon', icon);
     projectButton.appendChild(iconElem);
 
     return projectButton;
+};
+
+const deleteProjectHandler = (id) => {
+    todoList.deleteProject(id);
+    updateSidebar();
 };
 
 updateSidebar();
