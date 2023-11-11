@@ -30,6 +30,25 @@ const updateMainContent = () => {
         itemsUl.appendChild(showItem(item));
     }
     mainContentDiv.appendChild(itemsUl);
+
+    const newItemButton = document.createElement('button');
+    newItemButton.classList.add('new-item-button');
+    newItemButton.addEventListener('click', addNewItemListener);
+    newItemButton.textContent = 'New Item';
+    mainContentDiv.appendChild(newItemButton);
+};
+
+const addNewItemListener = () => {
+    const newItemId = todoList.addItem(
+        curProject.id,
+        '',
+        new Date(),
+        '',
+        'low',
+        false
+    );
+    const newItem = todoList.getItem(curProject.id, newItemId);
+    editItemForm(newItem);
 };
 
 const showItem = (item) => {

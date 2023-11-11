@@ -108,6 +108,4 @@ allProjects.addItem(0, 'name', new Date(), 'description', 'medium', false);
 allProjects.addItem(0, 'name 2', new Date(), 'description 2', 'high', true);
 allProjects.addItem(1, 'name 3', new Date(), 'description 3', 'low', false);
 
-// allProjects.addItem(1, '', new Date(), '', 'low', false); // default item
-
 export default allProjects;
