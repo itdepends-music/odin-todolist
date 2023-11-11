@@ -92,6 +92,8 @@ const projectNameFormHandler = (e, id) => {
     if (mainContent.getCurProject().id === id) {
         mainContent.updateMainContent();
     }
+
+    todoList.saveProjects();
 };
 
 const newProjectButton = document.getElementById('newProjectButton');
