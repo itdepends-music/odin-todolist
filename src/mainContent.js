@@ -13,6 +13,22 @@ const getCurProject = () => {
     return curProject;
 };
 
+const setThisWeek = () => {
+    curProject = {
+        name: 'This Week',
+        items: todoList.getThisWeekItems(),
+        id: -1,
+    };
+};
+
+const setToday = () => {
+    curProject = {
+        name: 'Today',
+        items: todoList.getThisDayItems(),
+        id: -1,
+    };
+};
+
 const updateMainContent = () => {
     mainContentDiv.innerHTML = '';
 
@@ -31,11 +47,13 @@ const updateMainContent = () => {
     }
     mainContentDiv.appendChild(itemsUl);
 
-    const newItemButton = document.createElement('button');
-    newItemButton.classList.add('new-item-button');
-    newItemButton.addEventListener('click', addNewItemListener);
-    newItemButton.textContent = 'New Item';
-    mainContentDiv.appendChild(newItemButton);
+    if (curProject.id !== -1) {
+        const newItemButton = document.createElement('button');
+        newItemButton.classList.add('new-item-button');
+        newItemButton.addEventListener('click', addNewItemListener);
+        newItemButton.textContent = 'New Item';
+        mainContentDiv.appendChild(newItemButton);
+    }
 };
 
 const addNewItemListener = () => {
@@ -145,4 +163,10 @@ const createItemButton = (id, editOrDeleteOrShowDescription, handler) => {
 
 updateMainContent();
 
-export default { updateMainContent, setCurProject, getCurProject };
+export default {
+    updateMainContent,
+    setCurProject,
+    getCurProject,
+    setThisWeek,
+    setToday,
+};

@@ -101,6 +101,17 @@ newProjectButton.addEventListener('click', () => {
     editButtonHandler(id);
 });
 
+const today = document.getElementById('today');
+today.addEventListener('click', () => {
+    mainContent.setToday();
+    mainContent.updateMainContent();
+});
+const thisWeek = document.getElementById('thisWeek');
+thisWeek.addEventListener('click', () => {
+    mainContent.setThisWeek();
+    mainContent.updateMainContent();
+});
+
 updateSidebar();
 
 export default updateSidebar;

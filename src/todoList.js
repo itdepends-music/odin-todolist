@@ -1,7 +1,7 @@
 let curProjectId = 0;
 let curItemId = 0;
 
-import { isThisWeek, isThisMonth } from 'date-fns';
+import { isThisWeek, isToday } from 'date-fns';
 
 const createItem = (name, date, description, priority, checked, projectId) => {
     const id = curItemId++;
@@ -75,15 +75,15 @@ const allProjects = (() => {
     };
 
     const getAllItems = () => {
-        [...allProjectsObj.projects.map((project) => project.items)];
+        return allProjectsObj.projects.map((project) => project.items).flat(1);
     };
 
     const getThisWeekItems = () => {
-        return getAllItems.filter((item) => isThisWeek(item.date));
+        return getAllItems().filter((item) => isThisWeek(item.date));
     };
 
-    const getThisMonthItems = () => {
-        return getAllItems.filter((item) => isThisMonth(item.date));
+    const getThisDayItems = () => {
+        return getAllItems().filter((item) => isToday(item.date));
     };
 
     const allProjectsObj = {
@@ -95,7 +95,7 @@ const allProjects = (() => {
         deleteItem,
         getItem,
         getThisWeekItems,
-        getThisMonthItems,
+        getThisDayItems,
     };
     return allProjectsObj;
 })();
