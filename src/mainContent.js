@@ -16,6 +16,10 @@ const getCurProject = () => {
 const updateMainContent = () => {
     mainContentDiv.innerHTML = '';
 
+    if (curProject === undefined) {
+        return;
+    }
+
     const heading = document.createElement('h2');
     heading.textContent = curProject.name;
     mainContentDiv.appendChild(heading);

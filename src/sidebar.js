@@ -1,4 +1,5 @@
 import todoList from './todoList';
+import mainContent from './mainContent';
 
 const updateSidebar = () => {
     const projectsListElem = document.getElementById('projectsList');
@@ -16,12 +17,19 @@ const createProjectLi = (name, id) => {
     const linkElem = document.createElement('a');
     linkElem.href = '#';
     linkElem.textContent = name;
+    linkElem.addEventListener('click', () => changeProjectListener(id));
     projectLi.appendChild(linkElem);
 
     projectLi.appendChild(createProjectButton(id, 'edit'));
     projectLi.appendChild(createProjectButton(id, 'delete'));
 
     return projectLi;
+};
+
+const changeProjectListener = (id) => {
+    const project = todoList.getProject(id);
+    mainContent.setCurProject(project);
+    mainContent.updateMainContent();
 };
 
 const createProjectButton = (id, editOrDelete) => {
@@ -48,6 +56,12 @@ const createProjectButton = (id, editOrDelete) => {
 const deleteProjectHandler = (id) => {
     todoList.deleteProject(id);
     updateSidebar();
+
+    if (mainContent.getCurProject().id === id) {
+        console.log('test');
+        mainContent.setCurProject(undefined);
+        mainContent.updateMainContent();
+    }
 };
 
 const editButtonHandler = (id) => {
@@ -71,6 +85,10 @@ const projectNameFormHandler = (e, id) => {
     const name = textInput.value;
     todoList.getProject(id).name = name;
     updateSidebar();
+
+    if (mainContent.getCurProject().id === id) {
+        mainContent.updateMainContent();
+    }
 };
 
 const newProjectButton = document.getElementById('newProjectButton');

@@ -1,7 +1,7 @@
 let curProjectId = 0;
 let curItemId = 0;
 
-import { isThisWeek, isThisMonth } from 'date-fns/isThisWeek';
+import { isThisWeek, isThisMonth } from 'date-fns';
 
 const createItem = (name, date, description, priority, checked, projectId) => {
     const id = curItemId++;
@@ -101,7 +101,11 @@ const allProjects = (() => {
 })();
 
 allProjects.addProject('My Project');
+
+// test content
+allProjects.addProject('Project 2');
 allProjects.addItem(0, 'name', new Date(), 'description', 'medium', false);
 allProjects.addItem(0, 'name 2', new Date(), 'description 2', 'high', true);
+allProjects.addItem(1, 'name 3', new Date(), 'description 3', 'low', false);
 
 export default allProjects;
