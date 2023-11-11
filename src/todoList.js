@@ -111,10 +111,17 @@ const allProjects = (() => {
         }
 
         for (const rawProject of rawProjects) {
+            if (rawProject.id >= curProjectId) {
+                curProjectId = rawProject.id + 1;
+            }
             const project = createProject(rawProject.name, rawProject.id);
             allProjectsObj.projects.push(project);
 
             for (const rawItem of rawProject.items) {
+                if (rawItem.id >= curItemId) {
+                    curItemId = rawItem.id + 1;
+                }
+
                 const item = createItem(
                     rawItem.name,
                     new Date(rawItem.date),

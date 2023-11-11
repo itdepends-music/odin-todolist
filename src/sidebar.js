@@ -90,7 +90,10 @@ const projectNameFormHandler = (e, id) => {
     todoList.getProject(id).name = name;
     updateSidebar();
 
-    if (mainContent.getCurProject().id === id) {
+    if (
+        mainContent.getCurProject !== undefined &&
+        mainContent.getCurProject().id === id
+    ) {
         mainContent.updateMainContent();
     }
 
