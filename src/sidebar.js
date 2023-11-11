@@ -91,7 +91,7 @@ const projectNameFormHandler = (e, id) => {
     updateSidebar();
 
     if (
-        mainContent.getCurProject !== undefined &&
+        mainContent.getCurProject() !== undefined &&
         mainContent.getCurProject().id === id
     ) {
         mainContent.updateMainContent();
