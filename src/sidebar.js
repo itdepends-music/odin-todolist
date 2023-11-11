@@ -2,6 +2,9 @@ import todoList from './todoList';
 import mainContent from './mainContent';
 
 const updateSidebar = () => {
+    const editItemForm = document.getElementById('newItem');
+    editItemForm.hidden = true;
+
     const projectsListElem = document.getElementById('projectsList');
     projectsListElem.innerHTML = '';
     for (const project of todoList.projects) {
@@ -99,3 +102,5 @@ newProjectButton.addEventListener('click', () => {
 });
 
 updateSidebar();
+
+export default updateSidebar;

@@ -10,6 +10,10 @@ body {
     background-color: white;
 }
 
+[hidden] {
+    display: none !important;
+}
+
 button {
     color: black;
     background-color: white;
@@ -128,9 +132,6 @@ textarea {
     display: flex;
     align-items: center;
     justify-content: center;
-
-    display: none;
-    /* turn off popup */
 }
 
 .new-item form {
