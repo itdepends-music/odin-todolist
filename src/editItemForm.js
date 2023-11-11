@@ -1,7 +1,8 @@
 import sidebar from './sidebar';
 import mainContent from './mainContent';
+import todoList from './todoList';
 
-const showEditItemForm = (item) => {
+const showEditItemForm = (item, deleteOnCancel) => {
     const newItem = document.getElementById('newItem');
     newItem.hidden = false;
 
@@ -58,6 +59,10 @@ const showEditItemForm = (item) => {
 
     const cancel = document.getElementById('cancel');
     cancel.addEventListener('click', () => {
+        if (deleteOnCancel) {
+            todoList.deleteItem(item.projectId, item.id);
+        }
+
         sidebar();
         mainContent.updateMainContent();
     });

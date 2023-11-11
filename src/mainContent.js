@@ -66,7 +66,7 @@ const addNewItemListener = () => {
         false
     );
     const newItem = todoList.getItem(curProject.id, newItemId);
-    editItemForm(newItem);
+    editItemForm(newItem, true);
 };
 
 const showItem = (item) => {
@@ -125,7 +125,7 @@ const showItem = (item) => {
 };
 
 const editHandler = (item) => {
-    editItemForm(item);
+    editItemForm(item, false);
 };
 
 const deleteHandler = (item) => {
