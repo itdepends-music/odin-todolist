@@ -31,18 +31,18 @@ const showEditItemForm = (item) => {
     const form = document.getElementById('form');
     form.addEventListener('submit', (e) => {
         e.preventDefault();
+
         item.name = name.value;
+
         const UTCdate = date.valueAsDate;
-        item.Date = new Date(
-            Date.UTC(
-                UTCdate.getUTCFullYear(),
-                UTCdate.getUTCMonth(),
-                UTCdate.getUTCDate()
-            )
+        item.date = new Date(
+            UTCdate.getUTCFullYear(),
+            UTCdate.getUTCMonth(),
+            UTCdate.getUTCDate()
         );
+
         item.description = description.value;
 
-        console.log(low.checked);
         if (low.checked) {
             console.log('test');
             item.priority = 'low';
