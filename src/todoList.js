@@ -3,14 +3,26 @@ let curItemId = 0;
 
 import { isThisWeek, isToday } from 'date-fns';
 
-const createItem = (name, date, description, priority, checked, projectId) => {
-    const id = curItemId++;
+const createItem = (
+    name,
+    date,
+    description,
+    priority,
+    checked,
+    projectId,
+    id
+) => {
+    if (id === undefined) {
+        id = curItemId++;
+    }
 
     return { name, date, description, priority, checked, id, projectId };
 };
 
-const createProject = (name) => {
-    const id = curProjectId++;
+const createProject = (name, id) => {
+    if (id === undefined) {
+        id = curProjectId++;
+    }
 
     const addItem = (name, date, description, priority, checked) => {
         const item = createItem(name, date, description, priority, checked, id);
@@ -87,8 +99,35 @@ const allProjects = (() => {
     };
 
     const saveProjects = () => {
-        localStorage.todoList = JSON.stringify(allProjects);
+        localStorage.todoList = JSON.stringify(allProjectsObj.projects);
         console.log('save');
+    };
+
+    const loadProjects = () => {
+        const rawProjects = JSON.parse(localStorage.todoList);
+
+        if (rawProjects === undefined) {
+            allProjects.addProject('My Project');
+            return;
+        }
+
+        for (const rawProject of rawProjects) {
+            const project = createProject(rawProject.name, rawProject.id);
+            allProjectsObj.projects.push(project);
+
+            for (const rawItem of rawProject.items) {
+                const item = createItem(
+                    rawItem.name,
+                    new Date(rawItem.date),
+                    rawItem.description,
+                    rawItem.priority,
+                    rawItem.checked,
+                    rawItem.projectId,
+                    rawItem.id
+                );
+                project.items.push(item);
+            }
+        }
     };
 
     const allProjectsObj = {
@@ -102,16 +141,11 @@ const allProjects = (() => {
         getThisWeekItems,
         getThisDayItems,
         saveProjects,
+        loadProjects,
     };
     return allProjectsObj;
 })();
 
-allProjects.addProject('My Project');
-
-// test content
-allProjects.addProject('Project 2');
-allProjects.addItem(0, 'name', new Date(), 'description', 'medium', false);
-allProjects.addItem(0, 'name 2', new Date(), 'description 2', 'high', true);
-allProjects.addItem(1, 'name 3', new Date(), 'description 3', 'low', false);
+allProjects.loadProjects();
 
 export default allProjects;

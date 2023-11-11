@@ -3,7 +3,7 @@ import { format } from 'date-fns';
 import editItemForm from './editItemForm';
 
 const mainContentDiv = document.getElementById('mainContent');
-let curProject = todoList.getProject(0);
+let curProject = undefined;
 
 const setCurProject = (project) => {
     curProject = project;
