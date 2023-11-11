@@ -103,12 +103,12 @@ const allProjects = (() => {
     };
 
     const loadProjects = () => {
-        const rawProjects = JSON.parse(localStorage.todoList);
-
-        if (rawProjects === undefined) {
+        if (localStorage.todoList === undefined) {
             allProjects.addProject('My Project');
             return;
         }
+
+        const rawProjects = JSON.parse(localStorage.todoList);
 
         for (const rawProject of rawProjects) {
             if (rawProject.id >= curProjectId) {
