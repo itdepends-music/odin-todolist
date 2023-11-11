@@ -30,7 +30,9 @@ const showEditItemForm = (item, deleteOnCancel) => {
     }
 
     const form = document.getElementById('form');
-    form.addEventListener('submit', (e) => {
+    const cancel = document.getElementById('cancel');
+
+    const submitEventListener = (e) => {
         e.preventDefault();
 
         item.name = name.value;
@@ -45,7 +47,6 @@ const showEditItemForm = (item, deleteOnCancel) => {
         item.description = description.value;
 
         if (low.checked) {
-            console.log('test');
             item.priority = 'low';
         } else if (medium.checked) {
             item.priority = 'medium';
@@ -55,17 +56,27 @@ const showEditItemForm = (item, deleteOnCancel) => {
 
         sidebar();
         mainContent.updateMainContent();
-    });
 
-    const cancel = document.getElementById('cancel');
-    cancel.addEventListener('click', () => {
+        todoList.saveProjects();
+
+        form.removeEventListener('submit', submitEventListener);
+        cancel.removeEventListener('click', cancelEventListener);
+    };
+
+    const cancelEventListener = () => {
         if (deleteOnCancel) {
             todoList.deleteItem(item.projectId, item.id);
         }
 
         sidebar();
         mainContent.updateMainContent();
-    });
+
+        form.removeEventListener('submit', submitEventListener);
+        cancel.removeEventListener('click', cancelEventListener);
+    };
+
+    form.addEventListener('submit', submitEventListener);
+    cancel.addEventListener('click', cancelEventListener);
 };
 
 export default showEditItemForm;

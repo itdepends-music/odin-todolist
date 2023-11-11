@@ -86,6 +86,11 @@ const allProjects = (() => {
         return getAllItems().filter((item) => isToday(item.date));
     };
 
+    const saveProjects = () => {
+        localStorage.todoList = JSON.stringify(allProjects);
+        console.log('save');
+    };
+
     const allProjectsObj = {
         projects: [],
         addProject,
@@ -96,6 +101,7 @@ const allProjects = (() => {
         getItem,
         getThisWeekItems,
         getThisDayItems,
+        saveProjects,
     };
     return allProjectsObj;
 })();
