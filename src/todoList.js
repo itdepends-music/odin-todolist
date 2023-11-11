@@ -100,7 +100,6 @@ const allProjects = (() => {
 
     const saveProjects = () => {
         localStorage.todoList = JSON.stringify(allProjectsObj.projects);
-        console.log('save');
     };
 
     const loadProjects = () => {

@@ -60,11 +60,12 @@ const deleteProjectHandler = (id) => {
     todoList.deleteProject(id);
     updateSidebar();
 
-    if (mainContent.getCurProject().id === id) {
-        console.log('test');
+    if (mainContent.getCurProject() && mainContent.getCurProject().id === id) {
         mainContent.setCurProject(undefined);
         mainContent.updateMainContent();
     }
+
+    todoList.saveProjects();
 };
 
 const editButtonHandler = (id) => {

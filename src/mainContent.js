@@ -131,6 +131,7 @@ const editHandler = (item) => {
 const deleteHandler = (item) => {
     todoList.deleteItem(item.projectId, item.id);
     updateMainContent();
+    todoList.saveProjects();
 };
 
 const descriptionHandler = (item) => {
